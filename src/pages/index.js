@@ -89,6 +89,11 @@ const HomepageWrapper = styled.div`
     display: block;
     ${media.tablet`max-width: 70%;`}
   }
+  .bookImage {
+    width: 60%;
+    display: block;
+    margin: 0 auto 50px auto;
+  }
   .link {
     padding: 0;
     color: ${Colors.darkest};
@@ -187,6 +192,11 @@ const Homepage = ({ data }) => {
             </DivWrapper>
           </BlockContent>
         </Content>
+        <Content>
+          <a href="https://www.kauppakamarikauppa.fi/kirjat/toimiva-johtoryhma.html">
+            <Img fluid={data.bookImage.childImageSharp.fluid} alt="Toimiva johtoryhmä" className="bookImage" />
+          </a>
+        </Content>
         <WorkWithMe>
           <t.H1 green>Ota yhteyttä</t.H1>
           <t.P>
@@ -210,6 +220,9 @@ export default Homepage;
 export const pageQuery = graphql`
   query {
     avatarHomepage: file(relativePath: { eq: "avatar.png" }) {
+      ...fluidImage
+    }
+    bookImage: file(relativePath: { eq: "toimiva_johtoryhma.png" }) {
       ...fluidImage
     }
   }
