@@ -93,6 +93,7 @@ const HomepageWrapper = styled.div`
     width: 60%;
     display: block;
     margin: 0 auto 50px auto;
+    box-shadow: 0 2px 26px 0 rgba(57, 55, 55, 0.08);
   }
   .link {
     padding: 0;
@@ -106,6 +107,10 @@ const HomepageWrapper = styled.div`
     margin: 100px 0 50px 0;
     font-size: 42px;
   }
+`;
+
+const Centered = styled.div`
+  text-align: center;
 `;
 
 const WorkWithMe = styled.div`
@@ -192,9 +197,26 @@ const Homepage = ({ data }) => {
             </DivWrapper>
           </BlockContent>
         </Content>
+
+        <Content>
+          <a href="https://www.propublishing.fi/products/keskusteleva-viestinta-strategiatyossa-ilmestyy-10-8-2023">
+            <Img
+              fluid={data.bookImage2.childImageSharp.fluid}
+              alt="Keskusteleva viestintä strategiatyössä"
+              className="bookImage"
+            />
+          </a>
+          <Centered>
+            <ContactLink href="https://instagram.com/keskusteleva_viestinta_valpola">
+              @keskusteleva_viestinta_valpola
+            </ContactLink>
+          </Centered>
+        </Content>
+        <br />
+        <br />
         <Content>
           <a href="https://www.kauppakamarikauppa.fi/kirjat/toimiva-johtoryhma.html">
-            <Img fluid={data.bookImage.childImageSharp.fluid} alt="Toimiva johtoryhmä" className="bookImage" />
+            <Img fluid={data.bookImage1.childImageSharp.fluid} alt="Toimiva johtoryhmä" className="bookImage" />
           </a>
         </Content>
         <WorkWithMe>
@@ -222,7 +244,10 @@ export const pageQuery = graphql`
     avatarHomepage: file(relativePath: { eq: "avatar.png" }) {
       ...fluidImage
     }
-    bookImage: file(relativePath: { eq: "toimiva_johtoryhma.png" }) {
+    bookImage1: file(relativePath: { eq: "toimiva_johtoryhma.png" }) {
+      ...fluidImage
+    }
+    bookImage2: file(relativePath: { eq: "keskuteleva-strategia.jpeg" }) {
       ...fluidImage
     }
   }
